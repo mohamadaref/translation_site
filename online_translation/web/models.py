@@ -1,31 +1,35 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 import datetime
 
-class Client(models.Model):
-    First_name = models.CharField(max_length = 20 , blank = False , null = False , default = '')
-    Last_name = models.CharField(max_length = 20 , blank = False , null = False , default = '')
-    User_name = models.CharField(max_length = 30 , blank = False , null = False , default = '' , unique = True)
-    Password = models.CharField(max_length = 20, blank = False , null = False , default = '')
+
+class Client(models.User):
+    UserName = User.username()
+    FirstName = User.first_name()
+    LastName = User.last_name()
+    Password = User.password()
     def __str__(self):
-        return self.User_name
+        return self.User_Name
 
 class Translator(models.Model):
-    First_name = models.CharField(max_length = 20 , blank = False , null = False , default = '')
-    Last_name = models.CharField(max_length = 20 , blank = False , null = False , default = '')
-    User_name = models.CharField(max_length = 30 , blank = False , null = False , default = '' , unique = True)
-    Password = models.CharField(max_length = 20, blank = False , null = False , default = '')
-    Card_num = models.IntegerField(blank = False , null = False , default=0)
+    UserName = User.username()
+    FirstName = User.first_name()
+    LastName = User.last_name()
+    Password = User.password()
+    CardNum = models.IntegerField(blank = False , null = False , default=0)
+    PhoneNumber = models.CharField(max_length = 11 , blank = False , default = '')
     def __str__(self):
-        return self.User_name
+        return self.User_Name
 
 class Documents(models.Model):
-    Upload_date = models.DateTimeField(auto_now_add=True)
+    UploadDate = models.DateTimeField(auto_now_add=True)
     # Done_date = models.DateField()
     # intended_date = models.IntegerField()
-    translator = models.OneToOneField(Translator , on_delete = models.CASCADE , default = '')
-    client = models.OneToOneField(Client , on_delete = models.CASCADE , default ='')
-    description = models.CharField(max_length=255, blank=True , default = '')
-    document = models.FileField(upload_to='documents/')
+    TranslatorIs = models.OneToOneField(Translator , on_delete = models.CASCADE , default = '')
+    ClientIs = models.OneToOneField(Client , on_delete = models.CASCADE , default ='')
+    Description = models.CharField(max_length=255, blank=True , default = '')
+    Document = models.FileField(upload_to='documents/')
     def __str__(self):
         return str(self.client) + ' ' + str(self.translator) + ' ' + str(self.Upload_date) + ' ' + str(self.description)
     # Create your models here

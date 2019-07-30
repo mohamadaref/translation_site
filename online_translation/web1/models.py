@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractBaseUser,AbstractUser
+from django.conf import settings
 import datetime
 
-class CustomUser(AbstractUser):
+class CustomUser(AbstractUser,models.Model):
     AbstractUser._meta.get_field('email')._unique = True
     AbstractUser._meta.get_field('email').blank = False
     AbstractUser._meta.get_field('email').null = False
+    ProfileImage = models.ImageField(blank = True , upload_to='profile_img/', default = 'profile_img/no-img.jpg')
     def __str__(self):
         return self.username
 

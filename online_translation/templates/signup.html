@@ -19,16 +19,19 @@
       <div class="animate form login_form">
         <section class="login_content">
           <form method='post'>
-            <h1>Login Form</h1>
-            {% csrf_token %}
-            {{ form.as_p }}
+            <h2>Sign up</h2>
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit">Sign up</button>
+            </form>
             <!-- <div>
               <input type="text" class="form-control" placeholder="Username" required="" />
             </div>
             <div>
               <input type="password" class="form-control" placeholder="Password" required="" />
             </div> -->
-            <div>
+            <!-- <div>
               <button type="submit">Login</button>
               <a class="reset_pass" href="#">Lost your password?</a>
             </div>
@@ -37,11 +40,11 @@
 
             <div class="separator">
               <p class="change_link">New to site?
-                <a href="signup" class="to_register"> Create Account </a>
+                <a href="#signup" class="to_register"> Create Account </a>
               </p>
 
               <div class="clearfix"></div>
-              <br />
+              <br />-->
 
               <div>
                 <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>

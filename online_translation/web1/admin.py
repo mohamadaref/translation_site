@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from web1.models import *
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin

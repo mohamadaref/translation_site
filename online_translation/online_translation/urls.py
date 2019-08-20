@@ -18,12 +18,14 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import TemplateView
-
+from web1 import views as web1views
+from web1.views import SignUpView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/login/profile/', include('web1.urls')),
+    path('accounts/login/signup/', SignUpView.as_view(), name='signup'),
     path('', TemplateView.as_view(template_name='app/index.html'), name='home'),
 
 ]
